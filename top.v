@@ -1,3 +1,4 @@
+
 module top
 #(
     parameter DIVIDE_BY = 17 // Use this when passing in to your clock div!
@@ -13,8 +14,11 @@ module top
 
 
     wire clkwire;
-    wire [3:0] anodewire, plus, minus;
-    assign an =anodewire;
+    wire [3:0] anodewire;
+    wire [3:0] plus;
+    wire [3:0] minus;
+    
+    assign an = anodewire;
     // Instantiate the clock divider...
     // ... wire it up to the scanner
     // ... wire the scanner to the decoder
@@ -23,8 +27,9 @@ module top
 
     // Do not forget to wire up resets!!
     
-    clock_div div(
-        .clock(clock),
+//    clock_div div( 
+   clock_div #(.DIVIDE_BY(DIVIDE_BY)) div(
+        .clock(clk),
         .reset(btnC),
         .div_clock(clkwire)
     );
@@ -55,7 +60,7 @@ module top
     );
     
         
-   
+ 
     
 
 endmodule
