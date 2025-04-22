@@ -27,15 +27,16 @@ module seven_seg_scanner(
  
  
  
+ 
+ 
+    assign anode[0] = ~(~State[1]&~State[0]);
+    assign anode[1] = ~(~State[1]&State[0]);
+    assign anode[2] = ~(State[1]&~State[0]);
+    assign anode[3] = ~(State[1]&State[0]);
+    
+    assign next[0] = (~State[1]&~State[0])|(State[1]&~State[0]);
+    assign next[1] = (~State[1]&State[0])|(State[1]&~State[0]);
 
-    assign anode[3] = (~State[1]&~State[0])|(~State[1]&State[0])|(State[1]&~State[0]);
-    assign anode[2] = (~State[1]&~State[0])|(~State[1]&State[0]);
-    assign anode[1] = (~State[1]&~State[0])|(State[1]&~State[0])|(State[1]&State[0]);
-    assign anode[0] = (~State[1]&State[0])|(State[1]&~State[0])|(State[1]&State[0]);
-    
-    assign next[0] = (div_clock&~State[1]&~State[0])|(div_clock&State[1]&~State[0])|(~div_clock&~State[1]&State[0])|(~div_clock&State[1]&State[0]);
-    assign next[1] = (div_clock&~State[1]&State[0])|(div_clock&State[1]&~State[0])|(~div_clock&State[1]&~State[0])|(~div_clock&State[1]&State[0]);
-    
-    
-    
 endmodule
+
+
