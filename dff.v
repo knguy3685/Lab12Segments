@@ -1,24 +1,18 @@
 module dff(
     input reset,
     input clock,
-    //input D,
-    output reg Q
-    //output NotQ
+    input D,
+    output reg Q,
+    output Qnot
 );
-
-    wire NotQ;
-    assign NotQ = ~Q;
-    
-    initial begin
-        Q <= 0;    
-    end
+ 
+    assign Qnot = ~Q;
 
     always @(posedge reset, posedge clock) begin
         if (reset) begin
             Q <= 0;
         end else if (clock) begin
-            
-            Q <= NotQ;
+            Q <= D;
         end
     end
 endmodule
